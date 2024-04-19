@@ -32,11 +32,13 @@ function playRound(playerSelection, computerSelection)
         console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
         return `You Win! ${playerSelection} beats ${computerSelection}`;
     }
-    else{
+    else 
+    {
         console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
         return `You Lose! ${computerSelection} beats ${playerSelection}`;
     }
-}
+    
+}    
 
 function playGame()
 {
@@ -45,12 +47,25 @@ function playGame()
     let choice;
     for (let i = 0; i <5 ; i++)
     {
-        choice = prompt("Enter your choice: ", "paper");
-        if (playRound(choice,getComputerChoice()).includes("Win"))
+        while (true)
+        {
+            choice = prompt("Enter your choice: ", "paper/rock/scissors");
+            if (choice != "rock" && choice != "paper" && choice != "scissors")
+            {
+                console.log("Invalid Value!");
+            }
+            else
+            {
+                break;
+            }
+
+        }
+        let result = playRound(choice,getComputerChoice());
+        if (result.includes("Win"))
         {
             playerScore += 1;
         }
-        else{
+        else if (result.includes("Lose")){
             computerScore += 1;
         }
     }
