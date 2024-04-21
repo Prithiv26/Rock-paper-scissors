@@ -1,0 +1,60 @@
+html{
+    background-color: rgb(37, 37, 91);
+    height: 100%;
+}
+body{
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+
+}
+
+h1{
+    text-align: center;
+    color: orange;
+    font-size: xx-large;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+
+.container{
+    display: flex;
+    margin-top: 350px;
+    margin-bottom: 20px;
+    justify-content: space-around;
+
+}
+
+.resultDiv{
+    height: 130px;
+    width: auto;
+}
+
+button{
+    width: 200px;
+    height: 100px;
+    font-size: xx-large;
+    background-color: rgb(119, 255, 0);
+    border: 3px solid rgb(14, 3, 3);
+}
+
+.div1{
+    background-color: rgb(212, 170, 16);
+    font-size: xx-large;
+    color: black;
+    width: fit-content;
+    height: auto;
+    padding: 20px;
+    border: 3px solid black;
+    
+}
+
+.div2,.div3{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: black;
+    width: fit-content;
+    height: auto;
+    padding: 20px;
+    background-color: rgb(255, 127, 251);
+}

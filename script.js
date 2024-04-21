@@ -24,7 +24,7 @@ function playRound(playerSelection, computerSelection)
     playerSelection = playerSelection.toLowerCase();
     if (playerSelection === computerSelection)
     {
-        console.log("It is a tie!");
+        console.log("It is a tie!1");
         return "It is a tie";
     }
     else if ((playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "rock"))
@@ -42,46 +42,71 @@ function playRound(playerSelection, computerSelection)
 
 function playGame()
 {
+    let done = false;
     let playerScore = 0;
     let computerScore = 0;
-    let choice;
-    for (let i = 0; i <5 ; i++)
-    {
-        while (true)
+    let div;
+    let div2;
+    let div3;
+    const container = document.querySelector(".container");
+    const scoreDiv = document.querySelector(".resultDiv");
+    container.addEventListener("click",function listener(e){
+        if (!div)
         {
-            choice = prompt("Enter your choice: ", "paper/rock/scissors");
-            if (choice != "rock" && choice != "paper" && choice != "scissors")
-            {
-                console.log("Invalid Value!");
-            }
-            else
-            {
-                break;
-            }
-
+            div = document.createElement("div");
+            div2 = document.createElement("div");
+            div3 = document.createElement("div");
+            scoreDiv.appendChild(div);
+            scoreDiv.appendChild(div2);
+            scoreDiv.appendChild(div3);
         }
-        let result = playRound(choice,getComputerChoice());
-        if (result.includes("Win"))
+        div.textContent = playRound(e.target.id,getComputerChoice());
+        div.classList.add("div1");
+        div2.classList.add("div2");
+        div3.classList.add("div3");
+        if (div.textContent.includes("Win"))
         {
             playerScore += 1;
         }
-        else if (result.includes("Lose")){
+        else if (div.textContent.includes("Lose"))
+        {
             computerScore += 1;
         }
-    }
-
-    if (playerScore === computerScore)
+        div2.textContent = `PlayerScore: ${playerScore}`;
+        div3.textContent = `ComputerScore: ${computerScore}`;
+        
+        if (playerScore === 5 || computerScore === 5)
     {
-        console.log("It is a tie!");
+        if (playerScore === computerScore)
+        {
+            div.textContent = "It is a tie!";
+            console.log("It is a tie!");
+            container.removeEventListener("click",listener);
+           
+            
+        }
+        else if(playerScore > computerScore)
+        {
+            div.textContent = "You win!";
+            console.log("You Win!");
+            container.removeEventListener("click",listener);
+           
+            
+        }
+        else
+        {
+            div.textContent = "You Lose!";
+            console.log("You Lose!");
+            container.removeEventListener("click",listener);
+           
+            
+            
+        }
+        
     }
-    else if(playerScore > computerScore)
-    {
-        console.log("You Win!");
-    }
-    else
-    {
-        console.log("You Lose!");
-    }
+    
+    });
+    console.log("done");
 }
 
 playGame();
