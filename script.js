@@ -48,22 +48,29 @@ function playGame()
     let div;
     let div2;
     let div3;
+    let div4;
     const container = document.querySelector(".container");
     const scoreDiv = document.querySelector(".resultDiv");
+    let click;
     container.addEventListener("click",function listener(e){
         if (!div)
         {
             div = document.createElement("div");
             div2 = document.createElement("div");
             div3 = document.createElement("div");
+            div4 = document.createElement("div");
             scoreDiv.appendChild(div);
-            scoreDiv.appendChild(div2);
-            scoreDiv.appendChild(div3);
+            scoreDiv.appendChild(div4);
+            div4.appendChild(div2);
+            div4.appendChild(div3);
         }
         div.textContent = playRound(e.target.id,getComputerChoice());
+        console.log(e.target);
         div.classList.add("div1");
         div2.classList.add("div2");
         div3.classList.add("div3");
+        div4.classList.add("div4");
+        click = new Event("click");
         if (div.textContent.includes("Win"))
         {
             playerScore += 1;
@@ -79,23 +86,72 @@ function playGame()
     {
         if (playerScore === computerScore)
         {
-            div.textContent = "It is a tie!";
-            console.log("It is a tie!");
+            div.style.borderStyle = "none";
+            div.style.background = "none";
+            const body = document.querySelector("body");
+            const modal = document.createElement("div");
+            const modalContent = document.createElement("div");
+            const playAgain = document.createElement("button");
+            modalContent.textContent = "It is a Tie!";
+            body.appendChild(modal);
+            modal.appendChild(modalContent)
+            modalContent.appendChild(playAgain);
+            playAgain.id = "button";
+            playAgain.textContent = "Play Again!";
+            modal.classList.add("modal");
+            modalContent.classList.add("modalContent")
+            playAgain.classList.add("playButton");
+            playAgain.addEventListener("click",() => {
+                window.location.reload();
+            });
             container.removeEventListener("click",listener);
            
             
         }
         else if(playerScore > computerScore)
         {
-            div.textContent = "You win!";
-            console.log("You Win!");
+            div.style.background = "none";
+            div.style.borderStyle = "none";
+            const body = document.querySelector("body");
+            const modal = document.createElement("div");
+            const modalContent = document.createElement("div");
+            const playAgain = document.createElement("button");
+            modalContent.textContent = "You Win!";
+            body.appendChild(modal);
+            modal.appendChild(modalContent)
+            modalContent.appendChild(playAgain);
+            playAgain.id = "button";
+            playAgain.textContent = "Play Again!";
+            modal.classList.add("modal");
+            modalContent.classList.add("modalContent")
+            playAgain.classList.add("playButton");
+            playAgain.addEventListener("click",() => {
+                window.location.reload();
+            });
             container.removeEventListener("click",listener);
            
             
         }
         else
         {
-            div.textContent = "You Lose!";
+            div.style.borderStyle = "none";
+            div.style.background = "none";
+            const body = document.querySelector("body");
+            const modal = document.createElement("div");
+            const modalContent = document.createElement("div");
+            const playAgain = document.createElement("button");
+            modalContent.textContent = "You Lose!";
+            body.appendChild(modal);
+            modal.appendChild(modalContent)
+            modalContent.appendChild(playAgain);
+            playAgain.id = "button";
+            playAgain.textContent = "Play Again!";
+            modal.classList.add("modal");
+            modalContent.classList.add("modalContent")
+            playAgain.classList.add("playButton");
+            playAgain.addEventListener("click",() => {
+                window.location.reload();
+            });
             console.log("You Lose!");
             container.removeEventListener("click",listener);
            
